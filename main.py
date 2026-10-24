@@ -61,7 +61,8 @@ def main():
     prev_state, prev_count = ctrl.state, None
     clicks = []
 
-    cv2.namedWindow(WINDOW)
+    cv2.namedWindow(WINDOW, cv2.WINDOW_NORMAL)
+    cv2.setWindowProperty(WINDOW, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     cv2.setMouseCallback(WINDOW, lambda e, x, y, f, p: clicks.append((x, y)) if e == cv2.EVENT_LBUTTONDOWN else None)
 
     def do_action(action):
