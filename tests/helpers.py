@@ -19,7 +19,6 @@ def make_hand(extended, rotate_deg=0.0):
     a = math.radians(rotate_deg)
     return [(x * math.cos(a) - y * math.sin(a), x * math.sin(a) + y * math.cos(a), z) for x, y, z in pts]
 
-
 ROCK = dict(index=False, middle=False, ring=False, pinky=False)
 PAPER = dict(index=True, middle=True, ring=True, pinky=True)
 SCISSORS = dict(index=True, middle=True, ring=False, pinky=False)
