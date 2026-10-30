@@ -55,7 +55,7 @@ python -m pytest -v
 `src/hand_tracker.py` (landmarks) → `gesture_classifier.py` (ROCK/PAPER/SCISSORS/UNKNOWN) → `gesture_stabilizer.py` (noise filter) → `game_controller.py` (state machine) → `game_rules.py`, `computer_player.py`, `score_manager.py`, `history.py` → `renderer.py` (UI).
 The classifier knows nothing about the game, and the rule engine knows nothing about the camera, so each can be tested alone.
 
-Tune everything (thresholds, countdown, first-to-N) in `src/config.py`.
+Tune thresholds and countdown in `src/config.py`. Matches are first to 3 scoring wins.
 
 ## Privacy
 All frames are processed locally. No video is saved or uploaded.

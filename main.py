@@ -46,8 +46,8 @@ def main():
     try:
         from src.hand_tracker import HandTracker, primary_hand, split_players
         tracker = HandTracker(settings)
-    except ImportError:
-        print("ERROR: mediapipe is not installed. Run: pip install -r requirements.txt")
+    except ImportError as e:
+        print(f"ERROR: mediapipe failed to load: {e}")
         camera.release()
         return 1
 

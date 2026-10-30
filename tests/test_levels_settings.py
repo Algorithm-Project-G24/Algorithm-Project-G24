@@ -57,6 +57,8 @@ def test_menu_navigation_and_changes():
     assert s.difficulty == "EASY"          # wraps around
     m.handle("down"); m.handle("right")    # Match row
     assert s.target_score == 3
+    m.handle("right")
+    assert s.target_score == 3              # Match length is fixed at first to 3
     m.handle("down"); m.handle("right")    # Countdown row
     assert s.countdown_seconds == 4
     m.handle("down"); m.handle("enter")    # Next round row toggles
@@ -98,7 +100,7 @@ def test_settings_save_and_load_roundtrip():
     save_settings(s, path)
     t = load_settings(path)
     assert (t.player_name, t.avatar, t.difficulty, t.target_score, t.countdown_seconds, t.sound) == \
-        ("Saory", "FROG", "HARD", 5, 4, False)
+        ("Saory", "FROG", "HARD", 3, 4, False)
 
 
 def test_load_ignores_missing_or_broken_file():

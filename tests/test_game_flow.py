@@ -92,8 +92,8 @@ def test_auto_next_round_and_new_game_reset():
 
 
 def test_target_score_ends_match():
-    c, clock, _ = make("SCISSORS", target_score=2)
-    for _ in range(2):
+    c, clock, _ = make("SCISSORS")
+    for _ in range(3):
         if c.state == gc.HOME:
             run_to_capture(c, clock)
         else:
@@ -103,6 +103,19 @@ def test_target_score_ends_match():
         if c.state == gc.SCORE_UPDATE:
             c.s.auto_next = False
     assert c.state == gc.GAME_OVER and c.winner == "PLAYER"
+    assert c.score.player == 3
+
+
+def test_computer_wins_match_after_three_scoring_rounds():
+    c, clock, _ = make("ROCK")
+    c.start_game()
+    for _ in range(3):
+        c.start_round()
+        clock.advance(c.s.countdown_seconds + 0.1); c.update()
+        show(c, clock, "SCISSORS")
+        clock.advance(c.s.result_seconds + 0.1); c.update()
+    assert c.state == gc.GAME_OVER and c.winner == "COMPUTER"
+    assert c.score.computer == 3
 
 
 def test_exit_from_any_state():

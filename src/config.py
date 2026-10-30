@@ -37,7 +37,7 @@ class Settings:
     result_seconds: float = 2.5
     auto_next: bool = False            # False = point at NEXT ROUND (or press SPACE); True = starts by itself
     auto_next_seconds: float = 2.0
-    target_score: int = 0              # 0 = free play, 3 = first to 3, 5 = first to 5
+    target_score: int = 3              # First to 3 wins the match
     history_size: int = 8
 
     # Optional
@@ -57,6 +57,7 @@ def load_settings(path: str = SETTINGS_FILE) -> Settings:
         for k in SAVED_FIELDS:
             if k in saved and type(saved[k]) is type(getattr(s, k)):
                 setattr(s, k, saved[k])
+        s.target_score = 3
     except (OSError, ValueError):
         pass
     return s

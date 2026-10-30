@@ -5,7 +5,7 @@ Row 0 (Name) is typed; every other row is changed with < > (keyboard or the poin
 """
 AVATARS = ("CAT", "PANDA", "FROG", "ROBOT")
 LEVELS = ("EASY", "NORMAL", "HARD")
-MATCHES = ((0, "Free play"), (3, "First to 3"), (5, "First to 5"))
+MATCHES = ((3, "First to 3"),)
 COUNTDOWNS = (2, 3, 4, 5)
 ROWS = ("Name", "Character", "Level", "Match", "Countdown", "Next round", "Sound")
 LEVEL_INFO = {
@@ -29,7 +29,7 @@ class SettingsMenu:
             s.player_name + ("_" if self.editing else ""),
             s.avatar,
             s.difficulty,
-            dict(MATCHES).get(s.target_score, "Free play"),
+            dict(MATCHES).get(s.target_score, "First to 3"),
             f"{s.countdown_seconds} sec",
             "AUTO" if s.auto_next else "POINT",
             "ON" if s.sound else "OFF",
